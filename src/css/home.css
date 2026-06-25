@@ -1,0 +1,113 @@
+.home-page {
+  font-family: Arial, sans-serif;
+  color: #1f2937;
+}
+
+.hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 8%;
+  background: linear-gradient(135deg, #111827, #1f2937);
+  color: white;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  color: #facc15;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  max-width: 900px;
+  margin: 10px 0;
+}
+
+.hero p {
+  max-width: 650px;
+  font-size: 1.2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.hero-buttons a,
+.promo-section button {
+  background: #facc15;
+  color: #111827;
+  padding: 14px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.hero-buttons .secondary {
+  background: white;
+}
+
+.cards-section,
+.event-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  padding: 60px 8%;
+}
+
+.info-card,
+.event-card {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.promo-section,
+.church-map-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+  padding: 70px 8%;
+  background: #f9fafb;
+}
+
+.video-box,
+.map-box {
+  min-height: 300px;
+  border-radius: 18px;
+  background: #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.events-section {
+  padding: 60px 8%;
+  text-align: center;
+}
+
+.contact {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+@media (max-width: 800px) {
+  .cards-section,
+  .event-list,
+  .promo-section,
+  .church-map-section {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+}
