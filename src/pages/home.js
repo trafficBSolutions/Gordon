@@ -93,7 +93,7 @@ const Home = () => {
             View churches in the Gordon Memorial Baptist Association on a map.
           </p>
           <p className="contact">
-            Contact: Tony Chester — <a href="tel:2398269908">(239) 826-9908</a>
+            Contact: Tony Chester — <a href="tel:2398269908">(239) 826-9908</a> | Office: <a href="tel:7065346986">(706) 534-6986</a>
           </p>
         </div>
 
