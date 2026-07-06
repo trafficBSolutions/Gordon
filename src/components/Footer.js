@@ -18,7 +18,7 @@ const Footer = () => {
         <div className="footer-col">
           <h4>Contact</h4>
           <p>Tony Chester</p>
-          <p><a href="tel:2398269908">(239) 826-9908</a></p>
+          <p>Office: <a href="tel:7065346986">(706) 534-6986</a></p>
           <p><a href="mailto:AMS@hopegordon.com">AMS@hopegordon.com</a></p>
           <p>Calhoun, GA 30701</p>
         </div>
