@@ -1,8 +1,8 @@
 const churches = [
-  { name: "Agape", pastor: "Mitchell McDougle", address: "1300 US 41 N Calhoun, GA 30701", phone: "(706) 629-5389", website: "https://www.facebook.com/agapebaptistcalhoun/", lat: 34.5580, lng: -84.9510 },
-  { name: "Antioch", pastor: "Derron Brown", address: "2666 Dews Pond Rd SE Calhoun, GA 30701", phone: "(706) 625-3866", website: "https://antiochcalhoun.com/", lat: 34.4680, lng: -84.9090 },
-  { name: "Belmont", pastor: "Luke Hughes", address: "275 W Belmont Dr Calhoun, GA 30701", phone: "(706) 629-2466", website: "https://mybelmont.org/", lat: 34.5020, lng: -84.9580 },
-  { name: "Bethesda", pastor: "Wesley Hunt", address: "146 Bethesda Church Rd NE Calhoun, GA 30701", phone: "(770) 548-2466", website: "https://bethesdabaptistcalhoun.com/", lat: 34.5310, lng: -84.9180 },
+  { name: "Agape", pastor: "Mitchell McDougle", address: "1300 US 41 N Calhoun, GA 30701", phone: "(706) 629-5389", website: "https://www.facebook.com/agapebaptistcalhoun/", lat: 34.530081, lng: -84.937453 },
+  { name: "Antioch", pastor: "Derron Brown", address: "2666 Dews Pond Rd SE Calhoun, GA 30701", phone: "(706) 625-3866", website: "https://antiochcalhoun.com/", lat: 34.498892, lng: -84.879850 },
+  { name: "Belmont", pastor: "Luke Hughes", address: "275 W Belmont Dr Calhoun, GA 30701", phone: "(706) 629-2466", website: "https://mybelmont.org/", lat: 34.480992, lng: -84.940972 },
+  { name: "Bethesda", pastor: "Wesley Hunt", address: "146 Bethesda Church Rd NE Calhoun, GA 30701", phone: "(770) 548-2466", website: "https://bethesdabaptistcalhoun.com/", lat: 34.528267, lng: -84.819683 },
   { name: "Bethlehem", pastor: "Ronnie Wells", address: "210 Bethlehem Church Rd SE Calhoun, GA 30701", phone: "", website: "https://www.facebook.com/bbcsonoraville/", lat: 34.4750, lng: -84.9200 },
   { name: "Blackwood", pastor: "Bryon Reeves", address: "4921 Fairmount Hwy SE Calhoun, GA 30701", phone: "(706) 629-4493", website: "https://www.facebook.com/blackwoodspringsbc/", lat: 34.4400, lng: -84.8800 },
   { name: "Calhoun First", pastor: "John Barber", address: "411 College St Calhoun, GA 30701", phone: "(706) 629-7714", website: "https://calhounfbc.org/", lat: 34.5027, lng: -84.9382 },
