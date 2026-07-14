@@ -1,0 +1,75 @@
+.pastors-page {
+  min-height: 60vh;
+}
+
+.pastors-hero {
+  text-align: center;
+  padding: 4rem 1rem 2rem;
+  background: linear-gradient(135deg, #facc15 0%, #fde68a 100%);
+}
+
+.pastors-hero h1 {
+  font-size: 2.5rem;
+  color: #111827;
+}
+
+.pastors-hero p {
+  color: #4b5563;
+  margin-top: 0.5rem;
+}
+
+.pastors-content {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.pastor-search {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.pastors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.pastor-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.pastor-card:hover {
+  transform: translateY(-3px);
+}
+
+.pastor-card h3 {
+  margin: 0 0 0.5rem;
+  color: #111827;
+}
+
+.pastor-church {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.pastor-phone {
+  color: #4b5563;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.no-results {
+  text-align: center;
+  color: #6b7280;
+  grid-column: 1 / -1;
+}
