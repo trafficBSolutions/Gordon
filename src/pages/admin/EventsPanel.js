@@ -45,12 +45,12 @@ const EventsPanel = () => {
       </form>
       <ul className="admin-list">
         {events.map(ev => (
-          <li key={ev.id}>
+          <li key={ev._id}>
             <div>
               <strong>{ev.title}</strong> — {ev.date} {ev.location && `@ ${ev.location}`}
               {ev.description && <p>{ev.description}</p>}
             </div>
-            <button onClick={() => handleDelete(ev.id)} className="btn-delete">Delete</button>
+            <button onClick={() => handleDelete(ev._id)} className="btn-delete">Delete</button>
           </li>
         ))}
       </ul>
