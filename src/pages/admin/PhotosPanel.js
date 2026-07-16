@@ -49,10 +49,10 @@ const PhotosPanel = () => {
       </form>
       <div className="admin-photos-grid">
         {photos.map(p => (
-          <div key={p.id} className="admin-photo-card">
+          <div key={p._id} className="admin-photo-card">
             <img src={`${API}${p.url}`} alt={p.caption} />
             {p.caption && <p>{p.caption}</p>}
-            <button onClick={() => handleDelete(p.id)} className="btn-delete">Delete</button>
+            <button onClick={() => handleDelete(p._id)} className="btn-delete">Delete</button>
           </div>
         ))}
       </div>
