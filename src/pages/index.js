@@ -3,4 +3,5 @@ import NotFound from "./NotFound";
 import Churches from "./Churches";
 import Pastors from "./Pastors";
 import Contact from "./Contact";
-export { Home, NotFound, Churches, Pastors, Contact };
+import Blewer from "./Blewer";
+export { Home, NotFound, Churches, Pastors, Contact, Blewer };
