@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const API = 'http://localhost:5000';
+const API = 'https://gordon-server.onrender.com';
 const token = () => localStorage.getItem('adminToken');
 
 const EventsPanel = () => {
