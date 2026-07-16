@@ -1,15 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import churches from '../data/churches';
 import '../css/churches.css';
 
+const API = 'https://gordon-server.onrender.com';
+
 const Churches = () => {
+  const [churches, setChurches] = useState([]);
   const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    fetch(`${API}/api/churches`).then(r => r.json()).then(setChurches).catch(() => {});
+  }, []);
 
   const filtered = churches.filter(c =>
     c.name.toLowerCase().includes(search.toLowerCase()) ||
-    c.pastor.toLowerCase().includes(search.toLowerCase()) ||
+    (c.pastor || '').toLowerCase().includes(search.toLowerCase()) ||
     c.address.toLowerCase().includes(search.toLowerCase())
   );
 
