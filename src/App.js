@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Home, NotFound, Churches, Pastors } from "./pages";
+import { Home, NotFound, Churches, Pastors, Contact } from "./pages";
+import Dashboard from "./pages/admin/Dashboard";
 
 function App() {
   return (
@@ -9,8 +10,10 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/pastors" element={<Pastors />} />
+        <Route path="/pastor-resources" element={<Pastors />} />
         <Route path="/churches" element={<Churches />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/admin" element={<Dashboard />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
