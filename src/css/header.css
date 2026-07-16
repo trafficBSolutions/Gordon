@@ -43,6 +43,18 @@
   color: #facc15;
 }
 
+.nav-login {
+  background: #111827;
+  color: white !important;
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+
+.nav-login:hover {
+  background: #374151;
+  color: white !important;
+}
+
 @media (max-width: 800px) {
   .site-header {
     flex-direction: column;
