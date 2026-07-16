@@ -1,8 +1,11 @@
+import { useState, useEffect } from 'react';
 import '../css/home.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import churches from '../data/churches';
+
+const API = 'https://gordon-server.onrender.com';
 
 // Fix default marker icon issue with webpack
 delete L.Icon.Default.prototype._getIconUrl;
@@ -13,6 +16,14 @@ L.Icon.Default.mergeOptions({
 });
 
 const Home = () => {
+  const [promo, setPromo] = useState({ title: '', url: '' });
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    fetch(`${API}/api/promo`).then(r => r.json()).then(setPromo).catch(() => {});
+    fetch(`${API}/api/events`).then(r => r.json()).then(setEvents).catch(() => {});
+  }, []);
+
   return (
     <main className="home-page">
       <section className="hero">
@@ -25,10 +36,38 @@ const Home = () => {
       </section>
 
       <section className="video-section">
-        <h2>From Tony</h2>
+        <h2>{promo.title || 'From Tony'}</h2>
         <p>Watch the latest video update from our Associational Mission Strategist.</p>
         <div className="video-box">
-          Video Area
+          {promo.url ? (
+            <iframe
+              src={promo.url.replace('watch?v=', 'embed/')}
+              title="Promo Video"
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              allowFullScreen
+              style={{ borderRadius: '18px', minHeight: '300px' }}
+            />
+          ) : (
+            <p>No video available yet.</p>
+          )}
+        </div>
+      </section>
+
+      <section className="events-section" id="events">
+        <h2>Upcoming Events</h2>
+        <p>Association events, church gatherings, meetings, and special services.</p>
+        <div className="event-list">
+          {events.length > 0 ? events.map(ev => (
+            <div key={ev._id} className="event-card">
+              <h3>{ev.title}</h3>
+              <p>{ev.date}{ev.location && ` — ${ev.location}`}</p>
+              {ev.description && <p>{ev.description}</p>}
+            </div>
+          )) : (
+            <p>No upcoming events.</p>
+          )}
         </div>
       </section>
 
