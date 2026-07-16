@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../css/header.css';
 
 const FacebookLogo = () => (
@@ -8,6 +8,15 @@ const FacebookLogo = () => (
 );
 
 const Header = () => {
+  const navigate = useNavigate();
+  const isLoggedIn = !!localStorage.getItem('adminToken');
+
+  const handleLogout = () => {
+    localStorage.removeItem('adminToken');
+    navigate('/');
+    window.location.reload();
+  };
+
   return (
     <header className="site-header">
       <a href="https://www.facebook.com/GMBA30701/" target="_blank" rel="noreferrer" className="logo-link">
@@ -19,7 +28,14 @@ const Header = () => {
         <Link to="/churches">Churches</Link>
         <Link to="/contact">Contact</Link>
         <Link to="/blewer">Blewer</Link>
-        <Link to="/admin" className="nav-login">Login</Link>
+        {isLoggedIn ? (
+          <>
+            <Link to="/admin" className="nav-login">Dashboard</Link>
+            <button onClick={handleLogout} className="nav-logout">Logout</button>
+          </>
+        ) : (
+          <Link to="/admin" className="nav-login">Login</Link>
+        )}
       </nav>
     </header>
   );
