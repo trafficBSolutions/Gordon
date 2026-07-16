@@ -1,47 +1,41 @@
-import { useState } from 'react';
-import churches from '../data/churches';
+import { useState, useEffect } from 'react';
 import '../css/pastors.css';
 
-const Pastors = () => {
-  const [search, setSearch] = useState('');
+const API = 'http://localhost:5000';
 
-  const pastors = churches
-    .filter(c => c.pastor)
-    .map(c => ({ name: c.pastor, church: c.name, phone: c.phone }))
-    .filter(p =>
-      p.name.toLowerCase().includes(search.toLowerCase()) ||
-      p.church.toLowerCase().includes(search.toLowerCase())
-    );
+const PastorResources = () => {
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    fetch(`${API}/api/pastor-resources`).then(r => r.json()).then(setVideos).catch(() => {});
+  }, []);
 
   return (
     <main className="pastors-page">
       <section className="pastors-hero">
-        <h1>Our Pastors</h1>
-        <p>Meet the pastors serving across the Gordon Memorial Baptist Association.</p>
+        <h1>Pastor Resources</h1>
+        <p>Videos, tools, and encouragement for pastors in our association.</p>
       </section>
 
       <section className="pastors-content">
-        <input
-          type="text"
-          className="pastor-search"
-          placeholder="Search by pastor or church name..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-        />
-
-        <div className="pastors-grid">
-          {pastors.map((p, i) => (
-            <div key={i} className="pastor-card">
-              <h3>{p.name}</h3>
-              <p className="pastor-church">{p.church}</p>
-              {p.phone && <p className="pastor-phone">{p.phone}</p>}
-            </div>
-          ))}
-          {pastors.length === 0 && <p className="no-results">No pastors found.</p>}
-        </div>
+        {videos.length > 0 ? (
+          <div className="pastors-grid">
+            {videos.map((v, i) => (
+              <div key={i} className="pastor-card">
+                <h3>{v.title}</h3>
+                {v.url && (
+                  <a href={v.url} target="_blank" rel="noreferrer">Watch Video</a>
+                )}
+                {v.description && <p>{v.description}</p>}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="no-results">Check back soon for new resources from Tony.</p>
+        )}
       </section>
     </main>
   );
 };
 
-export default Pastors;
+export default PastorResources;
