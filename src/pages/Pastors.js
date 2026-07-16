@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import '../css/pastors.css';
 
-const API = 'http://localhost:5000';
+const API = 'https://gordon-server.onrender.com';
 
 const PastorResources = () => {
   const [videos, setVideos] = useState([]);
