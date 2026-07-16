@@ -17,11 +17,18 @@ const Home = () => {
     <main className="home-page">
       <section className="hero">
         <div>
-          <p className="eyebrow">Gordon Memorial Baptist Association</p>
-          <h1>Supporting Pastors. Strengthening Churches. Sharing Hope.</h1>
+          <h1>Supporting Pastors.<br />Strengthening Churches.<br />Sharing Hope.</h1>
           <p>
-            We exist to foster thriving pastors and churches who partner together to thrive hope in Christ in our region and beyond.
+            GMBA exists to support pastors and strengthen churches who share hope in Christ in our region and beyond!
           </p>
+        </div>
+      </section>
+
+      <section className="video-section">
+        <h2>From Tony</h2>
+        <p>Watch the latest video update from our Associational Mission Strategist.</p>
+        <div className="video-box">
+          Video Area
         </div>
       </section>
 
@@ -30,10 +37,6 @@ const Home = () => {
           <h2>Church List & Map</h2>
           <p>
             View churches in the Gordon Memorial Baptist Association on a map.
-          </p>
-          <p className="contact">
-            Tony Chester | Office: <a href="tel:7065346986">(706) 534-6986</a> | <a href="mailto:AMS@hopegordon.com">AMS@hopegordon.com</a>
-            Amy Rickett | <a href="mailto:arickett373@gmail.com">arickett373@gmail.com</a>
           </p>
         </div>
 
@@ -47,7 +50,6 @@ const Home = () => {
               <Marker key={i} position={[church.lat, church.lng]}>
                 <Popup>
                   <strong>{church.name}</strong><br />
-                  {church.pastor && <>Pastor: {church.pastor}<br /></>}
                   {church.address}<br />
                   {church.phone && <>{church.phone}<br /></>}
                   {church.website && <a href={church.website} target="_blank" rel="noreferrer">Website</a>}
