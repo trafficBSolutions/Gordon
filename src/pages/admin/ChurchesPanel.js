@@ -16,7 +16,7 @@ const ChurchesPanel = () => {
   useEffect(() => { load(); }, []);
 
   const startEdit = (church) => {
-    setEditing(church.id);
+    setEditing(church._id);
     setPastor(church.pastor);
   };
 
@@ -39,17 +39,17 @@ const ChurchesPanel = () => {
         </thead>
         <tbody>
           {churches.map(c => (
-            <tr key={c.id}>
+            <tr key={c._id}>
               <td>{c.name}</td>
               <td>
-                {editing === c.id
+                {editing === c._id
                   ? <input value={pastor} onChange={e => setPastor(e.target.value)} />
                   : (c.pastor || '—')}
               </td>
               <td>
-                {editing === c.id
+                {editing === c._id
                   ? <>
-                      <button onClick={() => handleSave(c.id)} className="btn-save">Save</button>
+                      <button onClick={() => handleSave(c._id)} className="btn-save">Save</button>
                       <button onClick={() => setEditing(null)} className="btn-cancel">Cancel</button>
                     </>
                   : <button onClick={() => startEdit(c)} className="btn-edit">Edit</button>}
