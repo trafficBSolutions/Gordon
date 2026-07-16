@@ -17,6 +17,12 @@
 .fb-logo {
   height: 40px;
   width: 40px;
+  fill: #111827;
+  transition: fill 0.2s;
+}
+
+.logo-link:hover .fb-logo {
+  fill: #374151;
 }
 
 .main-nav {
