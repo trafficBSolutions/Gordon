@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../../css/admin/admin.css';
 
-const API = 'http://localhost:5000';
+const API = 'https://gordon-server.onrender.com';
 
 const Login = ({ onLogin }) => {
   const [form, setForm] = useState({ username: '', password: '' });
