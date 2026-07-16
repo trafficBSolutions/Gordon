@@ -1,0 +1,62 @@
+.blewer-page {
+  font-family: Arial, sans-serif;
+  color: #1f2937;
+}
+
+.blewer-hero {
+  background: #111827;
+  color: white;
+  padding: 60px 8%;
+  text-align: center;
+}
+
+.blewer-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.blewer-content {
+  padding: 60px 8%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.blewer-info h2,
+.blewer-contact h2 {
+  margin-bottom: 15px;
+  color: #111827;
+}
+
+.blewer-info p {
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.blewer-contact {
+  background: #f9fafb;
+  padding: 30px;
+  border-radius: 12px;
+  border-left: 4px solid #facc15;
+}
+
+.blewer-contact p {
+  margin: 8px 0;
+}
+
+.blewer-contact a {
+  color: #111827;
+  text-decoration: underline;
+}
+
+.blewer-address {
+  margin-top: 15px;
+  color: #4b5563;
+}
+
+@media (max-width: 800px) {
+  .blewer-content {
+    grid-template-columns: 1fr;
+  }
+}
