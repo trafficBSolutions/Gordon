@@ -178,3 +178,67 @@
 .admin-photo-card .btn-delete { margin: 0.5rem; }
 
 .admin-preview { margin-top: 1rem; }
+
+.promo-mode-toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.promo-mode-toggle button {
+  padding: 0.5rem 1rem;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.promo-mode-toggle button.active {
+  background: #111827;
+  color: #facc15;
+  border-color: #111827;
+}
+
+.promo-title-input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+
+.promo-upload-form {
+  flex-direction: column;
+}
+
+.file-label {
+  display: block;
+  padding: 0.75rem 1rem;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  color: #6b7280;
+  transition: border-color 0.2s;
+}
+
+.file-label:hover {
+  border-color: #facc15;
+  color: #111827;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #facc15;
+  transition: width 0.2s;
+}
