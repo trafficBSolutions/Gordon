@@ -42,7 +42,7 @@ const Home = () => {
           {promo.url ? (
             promo.type === 'upload' ? (
               <video
-                src={`${API}${promo.url}`}
+                src={promo.url}
                 controls
                 width="100%"
                 style={{ borderRadius: '18px', maxHeight: '400px' }}
