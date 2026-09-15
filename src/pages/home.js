@@ -40,15 +40,24 @@ const Home = () => {
         <p>Watch the latest video update from our Associational Mission Strategist.</p>
         <div className="video-box">
           {promo.url ? (
-            <iframe
-              src={promo.url.replace('watch?v=', 'embed/')}
-              title="Promo Video"
-              width="100%"
-              height="100%"
-              frameBorder="0"
-              allowFullScreen
-              style={{ borderRadius: '18px', minHeight: '300px' }}
-            />
+            promo.type === 'upload' ? (
+              <video
+                src={`${API}${promo.url}`}
+                controls
+                width="100%"
+                style={{ borderRadius: '18px', maxHeight: '400px' }}
+              />
+            ) : (
+              <iframe
+                src={promo.url.replace('watch?v=', 'embed/')}
+                title="Promo Video"
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                allowFullScreen
+                style={{ borderRadius: '18px', minHeight: '300px' }}
+              />
+            )
           ) : (
             <p>No video available yet.</p>
           )}
