@@ -53,7 +53,12 @@ const PromoPanel = () => {
         localStorage.removeItem('adminToken');
         window.location.reload();
       } else {
-        setMsg('Upload failed. Please try again.');
+        try {
+          const data = JSON.parse(xhr.responseText);
+          setMsg(`Upload failed: ${data.error || 'Unknown error'}`);
+        } catch {
+          setMsg('Upload failed. Please try again.');
+        }
       }
     };
 
