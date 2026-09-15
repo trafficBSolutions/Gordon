@@ -44,11 +44,14 @@ const PromoPanel = () => {
 
     xhr.onload = () => {
       setUploading(false);
-      if (xhr.status === 200) {
+      if (xhr.status === 200 || xhr.status === 201) {
         const data = JSON.parse(xhr.responseText);
         setPromo(data);
         setMsg('Video uploaded successfully!');
         setFile(null);
+      } else if (xhr.status === 401) {
+        localStorage.removeItem('adminToken');
+        window.location.reload();
       } else {
         setMsg('Upload failed. Please try again.');
       }
