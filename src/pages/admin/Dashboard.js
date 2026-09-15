@@ -7,12 +7,26 @@ import ChurchesPanel from './ChurchesPanel';
 import PastorResourcesPanel from './PastorResourcesPanel';
 import '../../css/admin/admin.css';
 
+const isTokenValid = () => {
+  const token = localStorage.getItem('adminToken');
+  if (!token) return false;
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.exp * 1000 > Date.now();
+  } catch {
+    return false;
+  }
+};
+
 const Dashboard = () => {
-  const [authed, setAuthed] = useState(!!localStorage.getItem('adminToken'));
+  const [authed, setAuthed] = useState(isTokenValid);
   const [tab, setTab] = useState('events');
 
   useEffect(() => {
-    setAuthed(!!localStorage.getItem('adminToken'));
+    if (!isTokenValid()) {
+      localStorage.removeItem('adminToken');
+      setAuthed(false);
+    }
   }, []);
 
   const logout = () => {
