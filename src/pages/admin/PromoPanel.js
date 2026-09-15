@@ -138,7 +138,7 @@ const PromoPanel = () => {
         <div className="admin-preview">
           <p>Current Video:</p>
           {promo.type === 'upload' ? (
-            <video src={`${API}${promo.url}`} controls width="100%" style={{ borderRadius: '8px' }} />
+            <video src={promo.url} controls width="100%" style={{ borderRadius: '8px' }} />
           ) : (
             <iframe src={promo.url.replace('watch?v=', 'embed/')} title="Promo" width="100%" height="300" frameBorder="0" allowFullScreen />
           )}
