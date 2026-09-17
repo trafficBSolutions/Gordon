@@ -75,7 +75,7 @@ const PastorResourcesPanel = () => {
       {tab === 'file' && (
         <form onSubmit={handleUpload} className="admin-form">
           <input placeholder="Video Title" value={fileForm.title} onChange={e => setFileForm({ ...fileForm, title: e.target.value })} required />
-          <input type="file" accept="video/*" onChange={e => setFileForm({ ...fileForm, file: e.target.files[0] })} required />
+          <input type="file" accept="video/*,.pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png" onChange={e => setFileForm({ ...fileForm, file: e.target.files[0] })} required />
           <textarea placeholder="Description (optional)" value={fileForm.description} onChange={e => setFileForm({ ...fileForm, description: e.target.value })} />
           <button type="submit" disabled={uploading}>{uploading ? 'Uploading...' : 'Upload Video'}</button>
         </form>
