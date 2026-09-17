@@ -1,6 +1,15 @@
+import { useState, useEffect } from 'react';
 import '../css/blewer.css';
 
+const API = 'https://gordon-server.onrender.com';
+
 const Blewer = () => {
+  const [forms, setForms] = useState([]);
+
+  useEffect(() => {
+    fetch(`${API}/api/blewer-forms`).then(r => r.json()).then(setForms).catch(() => {});
+  }, []);
+
   return (
     <main className="blewer-page">
       <section className="blewer-hero">
@@ -17,6 +26,20 @@ const Blewer = () => {
           <p>
             We work tirelessly to provide a warm and supportive environment where those experiencing hunger can find the nourishment they require. Whether you're in immediate need or facing ongoing challenges, our food pantry is here to help you and your family thrive.
           </p>
+
+          {forms.length > 0 && (
+            <div className="blewer-forms">
+              <h2>Client Forms</h2>
+              <p>Download, complete, and email the form back to Judy.</p>
+              <ul>
+                {forms.map(f => (
+                  <li key={f._id}>
+                    <a href={`${API}${f.url}`} target="_blank" rel="noreferrer">📄 {f.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         <div className="blewer-contact">
