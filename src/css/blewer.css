@@ -55,6 +55,43 @@
   color: #4b5563;
 }
 
+.blewer-forms {
+  margin-top: 30px;
+}
+
+.blewer-forms h2 {
+  margin-bottom: 8px;
+}
+
+.blewer-forms p {
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.blewer-forms ul {
+  list-style: none;
+  padding: 0;
+}
+
+.blewer-forms li {
+  margin-bottom: 10px;
+}
+
+.blewer-forms a {
+  color: #111827;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 10px 16px;
+  border: 2px solid #facc15;
+  border-radius: 8px;
+  display: inline-block;
+  transition: background 0.2s;
+}
+
+.blewer-forms a:hover {
+  background: #facc15;
+}
+
 @media (max-width: 800px) {
   .blewer-content {
     grid-template-columns: 1fr;
