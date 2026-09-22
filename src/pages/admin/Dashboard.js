@@ -6,6 +6,8 @@ import PromoPanel from './PromoPanel';
 import ChurchesPanel from './ChurchesPanel';
 import PastorResourcesPanel from './PastorResourcesPanel';
 import BlewerFormsPanel from './BlewerFormsPanel';
+import ContactsPanel from './ContactsPanel';
+import BlewerIntakesPanel from './BlewerIntakesPanel';
 import '../../css/admin/admin.css';
 
 const isTokenValid = () => {
@@ -50,6 +52,8 @@ const Dashboard = () => {
         <button className={tab === 'churches' ? 'active' : ''} onClick={() => setTab('churches')}>Pastors/Churches</button>
         <button className={tab === 'pastor-resources' ? 'active' : ''} onClick={() => setTab('pastor-resources')}>Pastor Resources</button>
         <button className={tab === 'blewer-forms' ? 'active' : ''} onClick={() => setTab('blewer-forms')}>Blewer Forms</button>
+        <button className={tab === 'contacts' ? 'active' : ''} onClick={() => setTab('contacts')}>Contact Messages</button>
+        <button className={tab === 'blewer-intakes' ? 'active' : ''} onClick={() => setTab('blewer-intakes')}>Blewer Intakes</button>
       </nav>
       <div className="admin-content">
         {tab === 'events' && <EventsPanel />}
@@ -58,6 +62,8 @@ const Dashboard = () => {
         {tab === 'churches' && <ChurchesPanel />}
         {tab === 'pastor-resources' && <PastorResourcesPanel />}
         {tab === 'blewer-forms' && <BlewerFormsPanel />}
+        {tab === 'contacts' && <ContactsPanel />}
+        {tab === 'blewer-intakes' && <BlewerIntakesPanel />}
       </div>
     </main>
   );
