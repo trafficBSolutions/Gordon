@@ -83,17 +83,28 @@ const PastorResourcesPanel = () => {
 
       <ul className="admin-list">
         {resources.map(r => (
-          <li key={r._id}>
-            <div>
-              <strong>{r.title}</strong>
-              <span style={{ marginLeft: '8px', fontSize: '0.8rem', color: '#6b7280' }}>{r.type === 'file' ? '📁 Uploaded' : '🔗 URL'}</span>
-              {r.description && <p>{r.description}</p>}
-              <a href={r.type === 'file' ? `${API}${r.url}` : r.url} target="_blank" rel="noreferrer">{r.url}</a>
+          <li key={r._id} className="resource-card">
+            <div className="resource-info">
+              <div className="resource-title">
+                <strong>{r.title}</strong>
+                <span className="resource-type-badge">{r.type === 'file' ? '📁 Uploaded' : '🔗 URL'}</span>
+              </div>
+              {r.description && <p className="resource-desc">{r.description}</p>}
             </div>
-            <button onClick={() => handleDelete(r._id)} className="btn-delete">Delete</button>
+            <div className="resource-actions">
+              <a
+                href={r.type === 'file' ? `${API}${r.url}` : r.url}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-visit"
+              >
+                Visit Resource
+              </a>
+              <button onClick={() => handleDelete(r._id)} className="btn-delete">Delete</button>
+            </div>
           </li>
         ))}
-        {resources.length === 0 && <p>No resources added yet.</p>}
+        {resources.length === 0 && <p className="no-results">No resources added yet.</p>}
       </ul>
     </div>
   );
