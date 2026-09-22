@@ -1,28 +1,38 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import '../css/contact.css';
 
 const API = 'https://gordon-server.onrender.com';
+const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState(null);
+  const recaptchaRef = useRef(null);
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async e => {
     e.preventDefault();
+    const captchaToken = recaptchaRef.current.getValue();
+    if (!captchaToken) {
+      setStatus('captcha');
+      return;
+    }
     setStatus('sending');
     try {
       const res = await fetch(`${API}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, captchaToken }),
       });
       if (res.ok) {
         setStatus('success');
         setForm({ name: '', email: '', message: '' });
+        recaptchaRef.current.reset();
       } else {
         setStatus('error');
+        recaptchaRef.current.reset();
       }
     } catch {
       setStatus('error');
@@ -87,6 +97,10 @@ const Contact = () => {
             onChange={handleChange}
             required
           />
+          {status === 'captcha' && (
+            <p className="form-msg error">Please complete the reCAPTCHA before submitting.</p>
+          )}
+          <ReCAPTCHA ref={recaptchaRef} sitekey={RECAPTCHA_SITE_KEY} />
           <button type="submit" disabled={status === 'sending'}>
             {status === 'sending' ? 'Sending...' : 'Send Message'}
           </button>
