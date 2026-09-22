@@ -92,8 +92,143 @@
   background: #facc15;
 }
 
+/* Intake Form */
+.blewer-intake {
+  margin-top: 40px;
+}
+
+.blewer-intake h2 {
+  margin-bottom: 8px;
+}
+
+.blewer-intake > p {
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.intake-toggle {
+  background: #111827;
+  color: #facc15;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.intake-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  background: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.intake-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.intake-field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 160px;
+}
+
+.intake-field--sm {
+  max-width: 100px;
+  min-width: 80px;
+}
+
+.intake-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.intake-field input,
+.intake-field select,
+.intake-field textarea {
+  padding: 0.6rem 0.8rem;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.intake-field input:focus,
+.intake-field select:focus,
+.intake-field textarea:focus {
+  border-color: #facc15;
+}
+
+.intake-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.intake-actions button[type="submit"] {
+  background: #111827;
+  color: #facc15;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.intake-actions button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.intake-cancel {
+  background: transparent;
+  border: 2px solid #d1d5db;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.intake-msg {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.intake-msg.success {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.intake-msg.error {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
 @media (max-width: 800px) {
   .blewer-content {
     grid-template-columns: 1fr;
+  }
+
+  .intake-row {
+    flex-direction: column;
+  }
+
+  .intake-field--sm {
+    max-width: 100%;
   }
 }
