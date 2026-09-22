@@ -3,10 +3,23 @@ import '../css/blewer.css';
 
 const API = 'https://gordon-server.onrender.com';
 
+const emptyMember = { name: '', ss4: '', dob: '', relationship: '' };
+
 const INITIAL_FORM = {
-  firstName: '', lastName: '', address: '', city: '', state: 'GA', zip: '',
-  phone: '', email: '', householdSize: '', monthlyIncome: '',
-  needReason: '', firstVisit: 'yes', referredBy: '',
+  // Primary
+  name: '', ss4: '', dob: '', date: '',
+  // Spouse
+  spouseName: '', spouseSs4: '', spouseDob: '', phone: '',
+  // Address
+  address: '', city: '', state: 'GA', zip: '',
+  // Household members (up to 6)
+  members: Array(6).fill(null).map(() => ({ ...emptyMember })),
+  // Income
+  income1: '', income2: '', income3: '',
+  // Church / visit
+  churchMembership: '', wantsVisit: '',
+  // Signature
+  signature: '', signatureDate: '',
 };
 
 const Blewer = () => {
@@ -20,6 +33,11 @@ const Blewer = () => {
   }, []);
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleMemberChange = (index, field, value) => {
+    const updated = form.members.map((m, i) => i === index ? { ...m, [field]: value } : m);
+    setForm({ ...form, members: updated });
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -63,7 +81,6 @@ const Blewer = () => {
             challenges, our food pantry is here to help you and your family thrive.
           </p>
 
-          {/* Downloadable forms */}
           {forms.length > 0 && (
             <div className="blewer-forms">
               <h2>Client Forms</h2>
@@ -78,7 +95,6 @@ const Blewer = () => {
             </div>
           )}
 
-          {/* Online intake form */}
           <div className="blewer-intake">
             <h2>Client Intake Form</h2>
             <p>Fill out the form below and it will be sent directly to our team.</p>
@@ -98,23 +114,56 @@ const Blewer = () => {
 
             {showForm && (
               <form className="intake-form" onSubmit={handleSubmit}>
+
+                {/* Row 1: Primary person */}
+                <div className="intake-section-label">Primary Applicant</div>
                 <div className="intake-row">
-                  <div className="intake-field">
-                    <label>First Name *</label>
-                    <input name="firstName" value={form.firstName} onChange={handleChange} required />
+                  <div className="intake-field intake-field--lg">
+                    <label>Name *</label>
+                    <input name="name" value={form.name} onChange={handleChange} required />
+                  </div>
+                  <div className="intake-field intake-field--sm">
+                    <label>Last 4 of SS#</label>
+                    <input name="ss4" maxLength="4" value={form.ss4} onChange={handleChange} />
                   </div>
                   <div className="intake-field">
-                    <label>Last Name *</label>
-                    <input name="lastName" value={form.lastName} onChange={handleChange} required />
+                    <label>Date of Birth</label>
+                    <input name="dob" type="date" value={form.dob} onChange={handleChange} />
+                  </div>
+                  <div className="intake-field">
+                    <label>Date</label>
+                    <input name="date" type="date" value={form.date} onChange={handleChange} />
                   </div>
                 </div>
 
-                <div className="intake-field">
-                  <label>Street Address *</label>
-                  <input name="address" value={form.address} onChange={handleChange} required />
+                {/* Row 2: Spouse */}
+                <div className="intake-section-label">Spouse</div>
+                <div className="intake-row">
+                  <div className="intake-field intake-field--lg">
+                    <label>Spouse Name</label>
+                    <input name="spouseName" value={form.spouseName} onChange={handleChange} />
+                  </div>
+                  <div className="intake-field intake-field--sm">
+                    <label>Last 4 of SS#</label>
+                    <input name="spouseSs4" maxLength="4" value={form.spouseSs4} onChange={handleChange} />
+                  </div>
+                  <div className="intake-field">
+                    <label>Date of Birth</label>
+                    <input name="spouseDob" type="date" value={form.spouseDob} onChange={handleChange} />
+                  </div>
+                  <div className="intake-field">
+                    <label>Phone # *</label>
+                    <input name="phone" type="tel" value={form.phone} onChange={handleChange} required />
+                  </div>
                 </div>
 
+                {/* Row 3: Address */}
+                <div className="intake-section-label">Address</div>
                 <div className="intake-row">
+                  <div className="intake-field intake-field--lg">
+                    <label>Address *</label>
+                    <input name="address" value={form.address} onChange={handleChange} required />
+                  </div>
                   <div className="intake-field">
                     <label>City *</label>
                     <input name="city" value={form.city} onChange={handleChange} required />
@@ -124,49 +173,87 @@ const Blewer = () => {
                     <input name="state" value={form.state} onChange={handleChange} />
                   </div>
                   <div className="intake-field intake-field--sm">
-                    <label>ZIP *</label>
+                    <label>Zip Code *</label>
                     <input name="zip" value={form.zip} onChange={handleChange} required />
                   </div>
                 </div>
 
+                {/* Others in Household */}
+                <div className="intake-section-label">Others in Household</div>
+                <div className="intake-household-header">
+                  <span>Name</span>
+                  <span>Last 4 of SS#</span>
+                  <span>Date of Birth</span>
+                  <span>Relationship</span>
+                </div>
+                {form.members.map((m, i) => (
+                  <div className="intake-row intake-household-row" key={i}>
+                    <div className="intake-field intake-field--lg">
+                      <input placeholder="Name" value={m.name} onChange={e => handleMemberChange(i, 'name', e.target.value)} />
+                    </div>
+                    <div className="intake-field intake-field--sm">
+                      <input placeholder="SS# last 4" maxLength="4" value={m.ss4} onChange={e => handleMemberChange(i, 'ss4', e.target.value)} />
+                    </div>
+                    <div className="intake-field">
+                      <input type="date" value={m.dob} onChange={e => handleMemberChange(i, 'dob', e.target.value)} />
+                    </div>
+                    <div className="intake-field">
+                      <input placeholder="Relationship" value={m.relationship} onChange={e => handleMemberChange(i, 'relationship', e.target.value)} />
+                    </div>
+                  </div>
+                ))}
+
+                {/* Income */}
+                <div className="intake-section-label">Income</div>
                 <div className="intake-row">
                   <div className="intake-field">
-                    <label>Phone *</label>
-                    <input name="phone" type="tel" value={form.phone} onChange={handleChange} required />
+                    <label>Income Source 1 (per month)</label>
+                    <input name="income1" placeholder="e.g. Employment — $1,200" value={form.income1} onChange={handleChange} />
                   </div>
                   <div className="intake-field">
-                    <label>Email</label>
-                    <input name="email" type="email" value={form.email} onChange={handleChange} />
+                    <label>Income Source 2 (per month)</label>
+                    <input name="income2" placeholder="e.g. SSI — $800" value={form.income2} onChange={handleChange} />
+                  </div>
+                  <div className="intake-field">
+                    <label>Income Source 3 (per month)</label>
+                    <input name="income3" placeholder="e.g. Child Support — $400" value={form.income3} onChange={handleChange} />
                   </div>
                 </div>
 
+                {/* Church / Visit */}
                 <div className="intake-row">
-                  <div className="intake-field">
-                    <label>Household Size *</label>
-                    <input name="householdSize" type="number" min="1" value={form.householdSize} onChange={handleChange} required />
+                  <div className="intake-field intake-field--lg">
+                    <label>Church Membership</label>
+                    <input name="churchMembership" placeholder="Church name (if any)" value={form.churchMembership} onChange={handleChange} />
                   </div>
                   <div className="intake-field">
-                    <label>Monthly Household Income</label>
-                    <input name="monthlyIncome" value={form.monthlyIncome} onChange={handleChange} placeholder="e.g. $1,200" />
+                    <label>Would you like a call / visit from a local church?</label>
+                    <div className="intake-radio-group">
+                      <label className="intake-radio">
+                        <input type="radio" name="wantsVisit" value="yes" checked={form.wantsVisit === 'yes'} onChange={handleChange} />
+                        Yes
+                      </label>
+                      <label className="intake-radio">
+                        <input type="radio" name="wantsVisit" value="no" checked={form.wantsVisit === 'no'} onChange={handleChange} />
+                        No
+                      </label>
+                    </div>
                   </div>
                 </div>
 
-                <div className="intake-field">
-                  <label>Reason for Need</label>
-                  <textarea name="needReason" rows="3" value={form.needReason} onChange={handleChange} placeholder="Brief description (optional)" />
+                {/* Declaration & Signature */}
+                <div className="intake-declaration">
+                  I declare that the above information is correct. I also understand that this information
+                  may be shared with other service agencies in Gordon County.
                 </div>
-
                 <div className="intake-row">
-                  <div className="intake-field">
-                    <label>Is this your first visit?</label>
-                    <select name="firstVisit" value={form.firstVisit} onChange={handleChange}>
-                      <option value="yes">Yes</option>
-                      <option value="no">No</option>
-                    </select>
+                  <div className="intake-field intake-field--lg">
+                    <label>Signature (type full name) *</label>
+                    <input name="signature" value={form.signature} onChange={handleChange} required placeholder="Type your full name as signature" />
                   </div>
                   <div className="intake-field">
-                    <label>Referred By</label>
-                    <input name="referredBy" value={form.referredBy} onChange={handleChange} placeholder="Church, agency, etc." />
+                    <label>Date *</label>
+                    <input name="signatureDate" type="date" value={form.signatureDate} onChange={handleChange} required />
                   </div>
                 </div>
 
