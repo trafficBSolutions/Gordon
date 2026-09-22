@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import '../css/blewer.css';
 
 const API = 'https://gordon-server.onrender.com';
+const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 const emptyMember = { name: '', ss4: '', dob: '', relationship: '' };
 
@@ -27,6 +29,7 @@ const Blewer = () => {
   const [form, setForm] = useState(INITIAL_FORM);
   const [status, setStatus] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const recaptchaRef = useRef(null);
 
   useEffect(() => {
     fetch(`${API}/api/blewer-forms`).then(r => r.json()).then(setForms).catch(() => {});
@@ -41,19 +44,26 @@ const Blewer = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    const captchaToken = recaptchaRef.current.getValue();
+    if (!captchaToken) {
+      setStatus('captcha');
+      return;
+    }
     setStatus('sending');
     try {
       const res = await fetch(`${API}/api/blewer-intake`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, captchaToken }),
       });
       if (res.ok) {
         setStatus('success');
         setForm(INITIAL_FORM);
         setShowForm(false);
+        recaptchaRef.current.reset();
       } else {
         setStatus('error');
+        recaptchaRef.current.reset();
       }
     } catch {
       setStatus('error');
@@ -256,6 +266,11 @@ const Blewer = () => {
                     <input name="signatureDate" type="date" value={form.signatureDate} onChange={handleChange} required />
                   </div>
                 </div>
+
+                {status === 'captcha' && (
+                  <p className="intake-msg error">Please complete the reCAPTCHA before submitting.</p>
+                )}
+                <ReCAPTCHA ref={recaptchaRef} sitekey={RECAPTCHA_SITE_KEY} />
 
                 <div className="intake-actions">
                   <button type="submit" disabled={status === 'sending'}>
