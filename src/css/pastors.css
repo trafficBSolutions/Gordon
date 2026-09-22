@@ -57,6 +57,29 @@
   color: #111827;
 }
 
+.pastor-resource-desc {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+
+.pastor-resource-btn {
+  display: inline-block;
+  background: #111827;
+  color: #facc15;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.pastor-resource-btn:hover {
+  background: #1f2937;
+}
+
 .pastor-church {
   color: #6b7280;
   font-size: 0.9rem;
