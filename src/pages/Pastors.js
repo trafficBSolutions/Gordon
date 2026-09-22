@@ -23,10 +23,10 @@ const PastorResources = () => {
             {videos.map((v, i) => (
               <div key={i} className="pastor-card">
                 <h3>{v.title}</h3>
+                {v.description && <p className="pastor-resource-desc">{v.description}</p>}
                 {v.url && (
-                  <a href={v.url} target="_blank" rel="noreferrer">Watch Video</a>
+                  <a href={v.url} target="_blank" rel="noreferrer" className="pastor-resource-btn">Visit Resource</a>
                 )}
-                {v.description && <p>{v.description}</p>}
               </div>
             ))}
           </div>
