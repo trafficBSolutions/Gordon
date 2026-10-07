@@ -93,7 +93,7 @@ const PastorResourcesPanel = () => {
             </div>
             <div className="resource-actions">
               <a
-                href={r.type === 'file' ? `${API}${r.url}` : r.url}
+                href={r.url}
                 target="_blank"
                 rel="noreferrer"
                 className="btn-visit"
