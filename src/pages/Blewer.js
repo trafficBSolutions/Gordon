@@ -73,6 +73,7 @@ const Blewer = () => {
   return (
     <main className="blewer-page">
       <section className="blewer-hero">
+        <img src="/Blewer Compass Cross Clock Emblem.png" alt="Blewer Food Center Logo" className="blewer-logo" />
         <h1>Blewer Food Center</h1>
         <p>Serving families in Gordon County with love and nourishment.</p>
       </section>
