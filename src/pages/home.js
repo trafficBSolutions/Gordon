@@ -36,7 +36,7 @@ const Home = () => {
       </section>
 
       <section className="video-section">
-        <h2>{promo.title || 'From Tony'}</h2>
+        <h2>{promo.title || 'Welcome'}</h2>
         <p>Watch the latest video update from our Associational Mission Strategist.</p>
         <div className="video-box">
           {promo.url ? (
