@@ -52,7 +52,6 @@ const Contact = () => {
           <p>373 Morrow Rd SE, Calhoun, GA 30701</p>
           <p>Office: <a href="tel:7065346986">(706) 534-6986</a></p>
           <br />
-          <p><strong>Tony Chester, AMS</strong></p>
           <p><a href="mailto:AMS@hopegordon.com">AMS@hopegordon.com</a></p>
           <br />
           <p><strong>Amy Rickett, Administrative Assistant</strong></p>
