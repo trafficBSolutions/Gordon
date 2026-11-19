@@ -49,7 +49,9 @@ const Home = () => {
               />
             ) : (
               <iframe
-                src={promo.url.replace('watch?v=', 'embed/')}
+                src={promo.url.includes('youtu.be/')
+                  ? promo.url.replace('youtu.be/', 'www.youtube.com/embed/')
+                  : promo.url.replace('watch?v=', 'embed/')}
                 title="Promo Video"
                 width="100%"
                 height="100%"
