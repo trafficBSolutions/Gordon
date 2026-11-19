@@ -3,6 +3,11 @@ import { useState, useEffect } from 'react';
 const API = 'https://gordon-server.onrender.com';
 const token = () => localStorage.getItem('adminToken');
 
+const getYouTubeEmbedUrl = url => {
+  const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/);
+  return match ? `https://www.youtube.com/embed/${match[1]}` : null;
+};
+
 const PromoPanel = () => {
   const [promo, setPromo] = useState({ title: '', url: '', type: 'youtube' });
   const [mode, setMode] = useState('upload'); // 'upload' or 'youtube'
@@ -109,11 +114,20 @@ const PromoPanel = () => {
       {mode === 'upload' ? (
         <form onSubmit={handleFileUpload} className="admin-form promo-upload-form">
           <label className="file-label">
-            {file ? file.name : 'Choose a video file (MP4, MOV, etc.)'}
+            {file ? file.name : 'Choose a video file (MP4 recommended, max 100MB)'}
             <input
               type="file"
               accept="video/*"
-              onChange={e => setFile(e.target.files[0])}
+              onChange={e => {
+                const f = e.target.files[0];
+                if (f && f.size > 100 * 1024 * 1024) {
+                  setMsg('File is too large. Please compress the video to under 100MB. MP4 format works best.');
+                  e.target.value = '';
+                } else {
+                  setMsg('');
+                  setFile(f);
+                }
+              }}
               style={{ display: 'none' }}
             />
           </label>
@@ -145,7 +159,7 @@ const PromoPanel = () => {
           {promo.type === 'upload' ? (
             <video src={promo.url} controls width="100%" style={{ borderRadius: '8px' }} />
           ) : (
-            <iframe src={promo.url.replace('watch?v=', 'embed/')} title="Promo" width="100%" height="300" frameBorder="0" allowFullScreen />
+            <iframe src={getYouTubeEmbedUrl(promo.url)} title="Promo" width="100%" height="300" frameBorder="0" allowFullScreen />
           )}
         </div>
       )}
