@@ -7,6 +7,11 @@ import churches from '../data/churches';
 
 const API = 'https://gordon-server.onrender.com';
 
+const getYouTubeEmbedUrl = url => {
+  const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/);
+  return match ? `https://www.youtube.com/embed/${match[1]}` : null;
+};
+
 // Fix default marker icon issue with webpack
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -49,9 +54,7 @@ const Home = () => {
               />
             ) : (
               <iframe
-                src={promo.url.includes('youtu.be/')
-                  ? promo.url.replace('youtu.be/', 'www.youtube.com/embed/')
-                  : promo.url.replace('watch?v=', 'embed/')}
+                src={getYouTubeEmbedUrl(promo.url)}
                 title="Promo Video"
                 width="100%"
                 height="100%"
